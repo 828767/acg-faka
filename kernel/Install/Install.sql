@@ -52,9 +52,9 @@ CREATE TABLE `__PREFIX__business_level`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 
-INSERT INTO `__PREFIX__business_level` VALUES (1, '体验版', '/assets/static/images/business/v1.png', 0.30, 0.10, 1, 0, 188.00, 1);
-INSERT INTO `__PREFIX__business_level` VALUES (3, '普通版', '/assets/static/images/business/v2.png', 0.25, 0.15, 1, 0, 288.00, 1);
-INSERT INTO `__PREFIX__business_level` VALUES (4, '专业版', '/assets/static/images/business/v3.png', 0.20, 0.20, 1, 1, 388.00, 1);
+INSERT INTO `__PREFIX__business_level` VALUES (1, '体验版', '/assets/static/images/business/v1.png', 0.20, 0.10, 1, 0, 188.00, 1);
+INSERT INTO `__PREFIX__business_level` VALUES (3, '普通版', '/assets/static/images/business/v2.png', 0.15, 0.15, 1, 0, 288.00, 1);
+INSERT INTO `__PREFIX__business_level` VALUES (4, '专业版', '/assets/static/images/business/v3.png', 0.10, 0.20, 1, 1, 388.00, 1);
 
 DROP TABLE IF EXISTS `__PREFIX__card`;
 CREATE TABLE `__PREFIX__card`  (
@@ -481,11 +481,11 @@ CREATE TABLE `__PREFIX__user_group`  (
 
 
 INSERT INTO `__PREFIX__user_group` VALUES (1, '白手起家', '/assets/static/images/group/ic_user level_1.png', 0.00, 0.30, 0.00);
-INSERT INTO `__PREFIX__user_group` VALUES (2, '小康之家', '/assets/static/images/group/ic_user level_2.png', 0.10, 0.25, 50.00);
-INSERT INTO `__PREFIX__user_group` VALUES (3, '腰缠万贯', '/assets/static/images/group/ic_user level_3.png', 0.20, 0.20, 100.00);
-INSERT INTO `__PREFIX__user_group` VALUES (4, '富甲一方', '/assets/static/images/group/ic_user level_4.png', 0.30, 0.15, 200.00);
-INSERT INTO `__PREFIX__user_group` VALUES (5, '富可敌国', '/assets/static/images/group/ic_user level_5.png', 0.40, 0.10, 300.00);
-INSERT INTO `__PREFIX__user_group` VALUES (6, '超凡至尊', '/assets/static/images/group/ic_user level_6.png', 0.50, 0.05, 500.00);
+INSERT INTO `__PREFIX__user_group` VALUES (2, '小康之家', '/assets/static/images/group/ic_user level_2.png', 0.05, 0.25, 100.00);
+INSERT INTO `__PREFIX__user_group` VALUES (3, '腰缠万贯', '/assets/static/images/group/ic_user level_3.png', 0.10, 0.20, 200.00);
+INSERT INTO `__PREFIX__user_group` VALUES (4, '富甲一方', '/assets/static/images/group/ic_user level_4.png', 0.15, 0.15, 500.00);
+INSERT INTO `__PREFIX__user_group` VALUES (5, '富可敌国', '/assets/static/images/group/ic_user level_5.png', 0.20, 0.10, 1000.00);
+INSERT INTO `__PREFIX__user_group` VALUES (6, '超凡至尊', '/assets/static/images/group/ic_user level_6.png', 0.25, 0.05, 2000.00);
 
 DROP TABLE IF EXISTS `__PREFIX__user_recharge`;
 CREATE TABLE `__PREFIX__user_recharge`  (
