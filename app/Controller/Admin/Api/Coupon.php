@@ -73,15 +73,15 @@ class Coupon extends Manage
         $race = $_POST['race'];
 
         if ($money <= 0) {
-            throw new JSONException("ಠ_ಠ请输入优惠卷价格");
+            throw new JSONException("ಠ_ಠ请输入优惠券价格");
         }
 
         if ($expireTime != '' && strtotime($expireTime) < time()) {
-            throw new JSONException("ಠ_ಠ优惠卷的过期时间不能是回忆");
+            throw new JSONException("ಠ_ಠ优惠券的过期时间不能是回忆");
         }
 
         if ($num <= 0) {
-            throw new JSONException("ಠ_ಠ最少也要生成1张优惠卷");
+            throw new JSONException("ಠ_ಠ最少也要生成1张优惠券");
         }
         $date = Date::current();
         $success = 0;
@@ -115,7 +115,7 @@ class Coupon extends Manage
             }
         }
 
-        ManageLog::log($this->getManage(), "[生成优惠卷]成功:{$success}张，失败：{$error}张");
+        ManageLog::log($this->getManage(), "[生成优惠券]成功:{$success}张，失败：{$error}张");
         return $this->json(200, "生成完毕，成功:{$success}张，失败：{$error}张", ["code" => $codes, "success" => $success, "error" => $error]);
     }
 
@@ -134,7 +134,7 @@ class Coupon extends Manage
             throw new JSONException("保存失败");
         }
 
-        ManageLog::log($this->getManage(), "[修改优惠卷]编辑了优惠卷信息");
+        ManageLog::log($this->getManage(), "[修改优惠券]编辑了优惠券信息");
         return $this->json(200, '（＾∀＾）保存成功');
     }
 
@@ -147,7 +147,7 @@ class Coupon extends Manage
         $list = (array)$_POST['list'];
         \App\Model\Coupon::query()->whereIn('id', $list)->whereRaw("status!=1")->update(['status' => 2]);
 
-        ManageLog::log($this->getManage(), "[锁定优惠卷]批量锁定了优惠卷，共计：" . count($list));
+        ManageLog::log($this->getManage(), "[锁定优惠券]批量锁定了优惠券，共计：" . count($list));
         return $this->json(200, '锁定成功');
     }
 
@@ -159,7 +159,7 @@ class Coupon extends Manage
         $list = (array)$_POST['list'];
         \App\Model\Coupon::query()->whereIn('id', $list)->whereRaw("status!=1")->update(['status' => 0]);
 
-        ManageLog::log($this->getManage(), "[解锁优惠卷]批量解锁了优惠卷，共计：" . count($list));
+        ManageLog::log($this->getManage(), "[解锁优惠券]批量解锁了优惠券，共计：" . count($list));
         return $this->json(200, '解锁成功');
     }
 
@@ -178,7 +178,7 @@ class Coupon extends Manage
             throw new JSONException("没有移除任何数据");
         }
 
-        ManageLog::log($this->getManage(), "[批量删除]批量删除了优惠卷，共计：" . count($_POST['list']));
+        ManageLog::log($this->getManage(), "[批量删除]批量删除了优惠券，共计：" . count($_POST['list']));
         return $this->json(200, '（＾∀＾）移除成功');
     }
 
@@ -199,10 +199,10 @@ class Coupon extends Manage
             $card .= $d->code . PHP_EOL;
         }
 
-        ManageLog::log($this->getManage(), "[优惠卷导出]导出优惠卷，共计：" . count($data));
+        ManageLog::log($this->getManage(), "[优惠券导出]导出优惠券，共计：" . count($data));
         header('Content-Type:application/octet-stream');
         header('Content-Transfer-Encoding:binary');
-        header('Content-Disposition:attachment; filename=优惠卷导出(' . count($data) . ')-' . Date::current() . '.txt');
+        header('Content-Disposition:attachment; filename=优惠券导出(' . count($data) . ')-' . Date::current() . '.txt');
         return $card;
     }
 }

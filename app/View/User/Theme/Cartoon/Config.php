@@ -78,7 +78,7 @@ interface Config
         "CATEGORY" => "User/Category.html", //会员-商品分类
         "COMMODITY" => "User/Commodity.html", //会员-我的商品
         "CARD" => "User/Card.html", //会员-卡密管理
-        "COUPON" => "User/Coupon.html", //会员-优惠卷管理
+        "COUPON" => "User/Coupon.html", //会员-优惠券管理
         "CASH" => "User/Cash.html", //会员-硬币兑现
         "CASH_RECORD" => "User/CashRecord.html", //会员-兑现记录
         "PERSONAL" => "User/Personal.html", //会员-个人资料

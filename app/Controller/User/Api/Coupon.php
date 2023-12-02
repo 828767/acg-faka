@@ -72,15 +72,15 @@ class Coupon extends User
         $userId = $this->getUser()->id;
 
         if ($money <= 0) {
-            throw new JSONException("ಠ_ಠ请输入优惠卷价格");
+            throw new JSONException("ಠ_ಠ请输入优惠券价格");
         }
 
         if ($expireTime != '' && strtotime($expireTime) < time()) {
-            throw new JSONException("ಠ_ಠ优惠卷的过期时间不能是回忆");
+            throw new JSONException("ಠ_ಠ优惠券的过期时间不能是回忆");
         }
 
         if ($num <= 0) {
-            throw new JSONException("ಠ_ಠ最少也要生成1张优惠卷");
+            throw new JSONException("ಠ_ಠ最少也要生成1张优惠券");
         }
 
 
@@ -179,7 +179,7 @@ class Coupon extends User
         }
         header('Content-Type:application/octet-stream');
         header('Content-Transfer-Encoding:binary');
-        header('Content-Disposition:attachment; filename=优惠卷导出(' . count($data) . ')-' . Date::current() . '.txt');
+        header('Content-Disposition:attachment; filename=优惠券导出(' . count($data) . ')-' . Date::current() . '.txt');
         return $card;
     }
 }

@@ -142,7 +142,7 @@ CREATE TABLE `__PREFIX__commodity`  (
                                         `contact_type` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '联系方式：0=任意，1=手机，2=邮箱，3=QQ',
                                         `password_status` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '订单密码：0=关闭，1=启用',
                                         `sort` smallint UNSIGNED NOT NULL DEFAULT 0 COMMENT '排序',
-                                        `coupon` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '优惠卷：0=关闭，1=启用',
+                                        `coupon` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '优惠券：0=关闭，1=启用',
                                         `shared_id` int UNSIGNED NULL DEFAULT NULL COMMENT '共享平台ID',
                                         `shared_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '共享平台-商品代码',
                                         `shared_premium` float(10, 2) UNSIGNED NULL DEFAULT 0.00 COMMENT '商品加价',
@@ -241,7 +241,7 @@ INSERT INTO `__PREFIX__config` VALUES (45, 'callback_domain', '');
 DROP TABLE IF EXISTS `__PREFIX__coupon`;
 CREATE TABLE `__PREFIX__coupon`  (
                                      `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
-                                     `code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '优惠卷代码',
+                                     `code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '优惠券代码',
                                      `commodity_id` int UNSIGNED NOT NULL COMMENT '商品id',
                                      `owner` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '所属会员：0=系统，其他等于会员UID',
                                      `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -315,7 +315,7 @@ CREATE TABLE `__PREFIX__order`  (
                                     `contact` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系方式',
                                     `delivery_status` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '发货状态：0=未发货，1=已发货',
                                     `pay_url` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-                                    `coupon_id` int UNSIGNED NULL DEFAULT NULL COMMENT '优惠卷id',
+                                    `coupon_id` int UNSIGNED NULL DEFAULT NULL COMMENT '优惠券id',
                                     `cost` decimal(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '手续费',
                                     `from` int UNSIGNED NULL DEFAULT NULL COMMENT '推广人id',
                                     `premium` decimal(10, 2) UNSIGNED NULL DEFAULT 0.00 COMMENT '加价',
@@ -480,12 +480,12 @@ CREATE TABLE `__PREFIX__user_group`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 
-INSERT INTO `__PREFIX__user_group` VALUES (1, '一贫如洗', '/assets/static/images/group/ic_user level_1.png', 0.00, 0.30, 0.00);
+INSERT INTO `__PREFIX__user_group` VALUES (1, '白手起家', '/assets/static/images/group/ic_user level_1.png', 0.00, 0.30, 0.00);
 INSERT INTO `__PREFIX__user_group` VALUES (2, '小康之家', '/assets/static/images/group/ic_user level_2.png', 0.10, 0.25, 50.00);
 INSERT INTO `__PREFIX__user_group` VALUES (3, '腰缠万贯', '/assets/static/images/group/ic_user level_3.png', 0.20, 0.20, 100.00);
 INSERT INTO `__PREFIX__user_group` VALUES (4, '富甲一方', '/assets/static/images/group/ic_user level_4.png', 0.30, 0.15, 200.00);
 INSERT INTO `__PREFIX__user_group` VALUES (5, '富可敌国', '/assets/static/images/group/ic_user level_5.png', 0.40, 0.10, 300.00);
-INSERT INTO `__PREFIX__user_group` VALUES (6, '至尊', '/assets/static/images/group/ic_user level_6.png', 0.50, 0.05, 500.00);
+INSERT INTO `__PREFIX__user_group` VALUES (6, '超凡至尊', '/assets/static/images/group/ic_user level_6.png', 0.50, 0.05, 500.00);
 
 DROP TABLE IF EXISTS `__PREFIX__user_recharge`;
 CREATE TABLE `__PREFIX__user_recharge`  (

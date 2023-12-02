@@ -17,6 +17,6 @@ class Coupon extends User
      */
     public function index(): string
     {
-        return $this->theme("代卷管理", "COUPON", "User/Coupon.html");
+        return $this->theme("代券管理", "COUPON", "User/Coupon.html");
     }
 }

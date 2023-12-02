@@ -4,30 +4,30 @@
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <div class="content-header">
-                <i class="layui-icon">&#xe638;</i> 优惠卷管理
+                <i class="layui-icon">&#xe638;</i> 优惠券管理
             </div>
 
             <div class="content-body">
                 <div style="margin-bottom: 5px;margin-top: 15px;">
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-pink button-add"><i class="layui-icon"
-                                                                                                      style="position: relative;top: -2px;">&#xe624;</i>生成优惠卷
+                                                                                                      style="position: relative;top: -2px;">&#xe624;</i>生成优惠券
                     </button>
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-pink button-del"><i class="layui-icon"
-                                                                                                      style="position: relative;top: -2px;">&#xe640;</i>移除选中优惠卷
+                                                                                                      style="position: relative;top: -2px;">&#xe640;</i>移除选中优惠券
                     </button>
 
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-pink button-lock"><i
                                 class="layui-icon"
-                                style="position: relative;top: -2px;">&#xe673;</i>锁定选中优惠卷
+                                style="position: relative;top: -2px;">&#xe673;</i>锁定选中优惠券
                     </button>
 
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-pink button-unlock"><i
                                 class="layui-icon"
-                                style="position: relative;top: -2px;">&#xe672;</i>解锁选中优惠卷
+                                style="position: relative;top: -2px;">&#xe672;</i>解锁选中优惠券
                     </button>
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-pink button-export"><i
                                 class="layui-icon"
-                                style="position: relative;top: -2px;">&#xe67d;</i>导出筛选优惠卷
+                                style="position: relative;top: -2px;">&#xe67d;</i>导出筛选优惠券
                     </button>
                 </div>
                 <form class="search-query"></form>
@@ -109,7 +109,7 @@
                 columns: [
                     {checkbox: true}
                     , {
-                        field: 'secret', title: '卷代码', formatter: function (val, item) {
+                        field: 'secret', title: '券代码', formatter: function (val, item) {
                             return '<span class="acg-badge acg-badge-light">' + item.code + '</span>';
                         }
                     }
@@ -184,7 +184,7 @@
                         },
                         events: {
                             'click .del': function (event, value, row, index) {
-                                layer.confirm('您是否要移除该优惠卷，这是无法恢复的？', {
+                                layer.confirm('您是否要移除该优惠券，这是无法恢复的？', {
                                     btn: ['确认移除', '取消']
                                 }, function () {
                                     $.post('/user/api/coupon/del', {list: [row.id]}, res => {
@@ -247,7 +247,7 @@
                         title: "备注信息",
                         name: "note",
                         type: "input",
-                        placeholder: "备注信息(可空)，方便查询某次生成的优惠卷"
+                        placeholder: "备注信息(可空)，方便查询某次生成的优惠券"
                     },
                     {
                         title: "抵扣模式",
@@ -266,15 +266,15 @@
                         default: 0
                     },
                     {title: "面值(金额/百分比)", name: "money", type: "input", placeholder: "金额或者百分比(小数代替范围：0~1)"},
-                    {title: "过期时间", name: "expire_time", type: "date", placeholder: "过了该时间优惠卷自动失效，不填代表永不过期"},
-                    {title: "可用次数", name: "life", type: "input", placeholder: "该优惠卷可以使用次数", default: "1"},
-                    {title: "卷码前缀", name: "prefix", type: "input", placeholder: "请输入优惠卷代码前缀，可留空", default: "ACG"},
-                    {title: "生成数量", name: "num", type: "input", placeholder: "你想生成多少张优惠卷", default: 1}
+                    {title: "过期时间", name: "expire_time", type: "date", placeholder: "过了该时间优惠券自动失效，不填代表永不过期"},
+                    {title: "可用次数", name: "life", type: "input", placeholder: "该优惠券可以使用次数", default: "1"},
+                    {title: "券码前缀", name: "prefix", type: "input", placeholder: "请输入优惠券代码前缀，可留空", default: "ACG"},
+                    {title: "生成数量", name: "num", type: "input", placeholder: "你想生成多少张优惠券", default: 1}
                 ], res => {
                     table.bootstrapTable('refresh', {silent: true});
                     layer.open({
                         type: 1,
-                        title: "优惠卷[成功:" + res.data.success + "/失败:" + res.data.error + "]",
+                        title: "优惠券[成功:" + res.data.success + "/失败:" + res.data.error + "]",
                         area: ['420px', '660px'],
                         content: '<textarea class="layui-input" style="padding: 15px;height: 100%;">' + res.data.code + '</textarea>'
                     });
@@ -290,11 +290,11 @@
             $('.button-del').click(() => {
                 let data = cao.listObjectToArray(table.bootstrapTable('getSelections'));
                 if (data.length == 0) {
-                    layer.msg("请至少勾选1个优惠卷再进行操作！");
+                    layer.msg("请至少勾选1个优惠券再进行操作！");
                     return;
                 }
 
-                layer.confirm('您确定要删除已经选中的优惠卷吗？这是不可恢复的操作！', {
+                layer.confirm('您确定要删除已经选中的优惠券吗？这是不可恢复的操作！', {
                     btn: ['确定', '取消']
                 }, function () {
                     $.post("/user/api/coupon/del", {list: data}, res => {
@@ -307,10 +307,10 @@
             $('.button-lock').click(() => {
                 let data = cao.listObjectToArray(table.bootstrapTable('getSelections'));
                 if (data.length == 0) {
-                    layer.msg("请至少勾选1个优惠卷进行操作！");
+                    layer.msg("请至少勾选1个优惠券进行操作！");
                     return;
                 }
-                layer.confirm('您确定要锁定选中的优惠卷吗？', {
+                layer.confirm('您确定要锁定选中的优惠券吗？', {
                     btn: ['确定', '取消']
                 }, function () {
                     $.post("/user/api/coupon/lock", {list: data}, res => {
@@ -323,10 +323,10 @@
             $('.button-unlock').click(() => {
                 let data = cao.listObjectToArray(table.bootstrapTable('getSelections'));
                 if (data.length == 0) {
-                    layer.msg("请至少勾选1个优惠卷进行操作！");
+                    layer.msg("请至少勾选1个优惠券进行操作！");
                     return;
                 }
-                layer.confirm('您确定要解锁选中的优惠卷吗？', {
+                layer.confirm('您确定要解锁选中的优惠券吗？', {
                     btn: ['确定', '取消']
                 }, function () {
                     $.post("/user/api/coupon/unlock", {list: data}, res => {
@@ -342,9 +342,9 @@
             });
 
             cao.query('.search-query', table, [
-                {title: "卷代码", name: "equal-code", type: "input", width: 150},
+                {title: "券代码", name: "equal-code", type: "input", width: 150},
                 {title: "备注信息", name: "equal-note", type: "input", width: 150},
-                {title: "卷面值", name: "equal-money", type: "input", width: 150},
+                {title: "券面值", name: "equal-money", type: "input", width: 150},
                 {
                     title: "状态", name: "equal-status", type: "select", dict: [
                         {id: 0, name: "未使用"},

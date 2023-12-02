@@ -218,7 +218,7 @@ class OrderService implements Order
         $payId = (int)$map['pay_id'];//支付方式id
         $device = (int)$map['device'];//设备
         $password = (string)$map['password'];//查单密码
-        $coupon = (string)$map['coupon'];//优惠卷
+        $coupon = (string)$map['coupon'];//优惠券
         $from = (int)$map['from'];//推广人ID
         $owner = $user == null ? 0 : $user->id;
         $race = (string)$map['race']; //2022/01/09 新增，商品种类功能
@@ -467,45 +467,45 @@ class OrderService implements Order
                   $order->amount = $order->amount - ($order->amount * $userGroup->discount);
               }*/
 
-            //优惠卷
+            //优惠券
             if ($coupon != "") {
                 $voucher = Coupon::query()->where("code", $coupon)->first();
 
                 if (!$voucher) {
-                    throw new JSONException("该优惠卷不存在");
+                    throw new JSONException("该优惠券不存在");
                 }
 
                 if ($voucher->owner != $commodity->owner) {
-                    throw new JSONException("该优惠卷不存在");
+                    throw new JSONException("该优惠券不存在");
                 }
 
                 if ($race && $voucher->commodity_id != 0) {
                     if ($race != $voucher->race) {
-                        throw new JSONException("该优惠卷不能抵扣当前商品");
+                        throw new JSONException("该优惠券不能抵扣当前商品");
                     }
                 }
 
                 if ($voucher->commodity_id != 0 && $voucher->commodity_id != $commodity->id) {
-                    throw new JSONException("该优惠卷不属于该商品");
+                    throw new JSONException("该优惠券不属于该商品");
                 }
 
-                //判断该优惠卷是否有分类设定
+                //判断该优惠券是否有分类设定
                 if ($voucher->commodity_id == 0 && $voucher->category_id != 0 && $voucher->category_id != $commodity->category_id) {
-                    throw new JSONException("该优惠卷不能抵扣当前商品");
+                    throw new JSONException("该优惠券不能抵扣当前商品");
                 }
 
                 if ($voucher->status != 0) {
-                    throw new JSONException("该优惠卷已失效");
+                    throw new JSONException("该优惠券已失效");
                 }
 
                 //检测过期时间
                 if ($voucher->expire_time != null && strtotime($voucher->expire_time) < time()) {
-                    throw new JSONException("该优惠卷已过期");
+                    throw new JSONException("该优惠券已过期");
                 }
 
                 //检测面额
                 if ($voucher->money >= $order->amount) {
-                    throw new JSONException("该优惠卷面额大于订单金额");
+                    throw new JSONException("该优惠券面额大于订单金额");
                 }
 
                 //进行优惠
@@ -956,46 +956,46 @@ class OrderService implements Order
         }
 
         $couponMoney = 0;
-        //优惠卷
+        //优惠券
         $price = $amount / $num;
         if ($coupon != "") {
             $voucher = Coupon::query()->where("code", $coupon)->first();
 
             if (!$voucher) {
-                throw new JSONException("该优惠卷不存在");
+                throw new JSONException("该优惠券不存在");
             }
 
             if ($voucher->owner != $commodity->owner) {
-                throw new JSONException("该优惠卷不存在");
+                throw new JSONException("该优惠券不存在");
             }
 
             if ($race && $voucher->commodity_id != 0) {
                 if ($race != $voucher->race) {
-                    throw new JSONException("该优惠卷不能抵扣当前商品");
+                    throw new JSONException("该优惠券不能抵扣当前商品");
                 }
             }
 
             if ($voucher->commodity_id != 0 && $voucher->commodity_id != $commodity->id) {
-                throw new JSONException("该优惠卷不属于该商品");
+                throw new JSONException("该优惠券不属于该商品");
             }
 
-            //判断该优惠卷是否有分类设定
+            //判断该优惠券是否有分类设定
             if ($voucher->commodity_id == 0 && $voucher->category_id != 0 && $voucher->category_id != $commodity->category_id) {
-                throw new JSONException("该优惠卷不能抵扣当前商品");
+                throw new JSONException("该优惠券不能抵扣当前商品");
             }
 
             if ($voucher->status != 0) {
-                throw new JSONException("该优惠卷已失效");
+                throw new JSONException("该优惠券已失效");
             }
 
             //检测过期时间
             if ($voucher->expire_time != null && strtotime($voucher->expire_time) < time()) {
-                throw new JSONException("该优惠卷已过期");
+                throw new JSONException("该优惠券已过期");
             }
 
             //检测面额
             if ($voucher->money >= $amount) {
-                throw new JSONException("该优惠卷面额大于订单金额");
+                throw new JSONException("该优惠券面额大于订单金额");
             }
 
             $deduction = $voucher->mode == 0 ? $voucher->money : $price * $voucher->money;

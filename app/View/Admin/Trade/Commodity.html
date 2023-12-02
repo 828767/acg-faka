@@ -258,7 +258,7 @@
                 <td>[password_status]</td>
             </tr>
             <tr>
-                <td>优惠卷</td>
+                <td>优惠券</td>
                 <td>[coupon]</td>
             </tr>
 
@@ -1033,7 +1033,7 @@
                         type: "input",
                         placeholder: "单次最大购买数量，0=不限制，默认0"
                     },
-                    {title: "优惠卷", name: "coupon", type: "switch", text: "启用"},
+                    {title: "优惠券", name: "coupon", type: "switch", text: "启用"},
                     {
                         title: "限时秒杀", name: "seckill_status", type: "switch", text: "启用", change: function (value) {
                             let d1 = cao.popupElement("seckill_start_time", "date", commodityUnqueId).parent().parent();
@@ -1372,7 +1372,7 @@
                         text: "启用"
                     },
                     {
-                        title: "优惠卷",
+                        title: "优惠券",
                         name: "coupon",
                         type: "switch",
                         text: "启用"
