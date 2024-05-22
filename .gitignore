@@ -1,0 +1,12 @@
+.idea
+.lock
+.DS_Store
+.vscode
+/storage/*.key
+*.cache
+*.log
+.well-known
+.env
+.env.backup
+composer.lock
+config/database.php
