@@ -10,3 +10,5 @@
 .env.backup
 composer.lock
 config/database.php
+runtime/
+vendor/
